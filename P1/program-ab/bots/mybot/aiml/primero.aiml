@@ -1,0 +1,33 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Primera regla -->
+
+<category>
+<pattern>Hola *</pattern>
+<template>Hola, que tal?</template>
+</category>
+
+<!-- Segunda regla -->
+
+<category>
+<pattern>Hola</pattern>
+<template>Holade nuevo, que tal?</template>
+</category>
+
+<!-- Tercera regla -->
+
+<category>
+<pattern>* que tal tu</pattern>
+<template>Estoy genial!!!</template>
+</category>
+
+<!-- Cuarta regla -->
+
+<category>
+<pattern>Fenomeno, me llamo *</pattern>
+<template>Que casualidad <star/> yo tambien tengo nombre, me llamo HALberto </template>
+</category>
+
+</aiml>
