@@ -2,32 +2,123 @@
 encoding="UTF-8"?>
 <aiml version="2.0">
 
-<!-- Primera regla -->
+<!-- Regla 1 -->
 
 <category>
 <pattern>Hola *</pattern>
-<template>Hola, que tal?</template>
+<template>
+	<random>
+		<li>Hola, que tal?</li>
+		<li>Hola!</li>
+		<li>Buenas, que tal?</li>
+		<li>Que pasa tronco?</li>
+	</random>
+</template>
 </category>
 
-<!-- Segunda regla -->
-
-<category>
-<pattern>Hola</pattern>
-<template>Holade nuevo, que tal?</template>
-</category>
-
-<!-- Tercera regla -->
+<!-- Regla 2 -->
 
 <category>
 <pattern>* que tal tu</pattern>
 <template>Estoy genial!!!</template>
 </category>
 
-<!-- Cuarta regla -->
+<!-- Regla 3 -->
 
 <category>
-<pattern>Fenomeno, me llamo *</pattern>
-<template>Que casualidad <star/> yo tambien tengo nombre, me llamo HALberto </template>
+<pattern>^ me llamo *</pattern>
+<template>
+	<think><set name="nombre"><star index="2"/></set></think>
+	<get name="nombre"/> es un bonito nombre, yo también tengo uno, me llamo HALberto </template>
+</category>
+
+<!-- Regla 4 -->
+
+<category>
+<pattern>Hola</pattern>
+<template>Hola de nuevo <get name="nombre"/>, que tal?</template>
+</category>
+
+<!-- Regla 5 -->
+
+<category>
+<pattern>Cual es tu edad</pattern>
+<template>Tengo <bot name="age"/> anios</template>
+</category>
+
+<!-- Regla 6 -->
+
+<category>
+<pattern>Cual es mi nombre</pattern>
+<template>
+	<condition name="nombre">
+	<li value="unknown">Aun no me has dicho tu nombre</li>
+	<li> Tu nombre es <get name="nombre"/></li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 7 -->
+
+<category>
+<pattern>Mi color favorito es el *</pattern>
+<template>
+	<think><set var="color"><star/></set></think>
+	El <get var="color"/> es un color que no me gusta.
+</template>
+</category>
+
+<!-- Regla 8 -->
+
+<category>
+<pattern>* mi nombre</pattern>
+<template><srai>CUAL ES MI NOMBRE</srai></template>
+</category>
+
+<!-- Regla 9 -->
+
+<category>
+<pattern>^ me llamo</pattern>
+<template><srai>CUAL ES MI NOMBRE</srai></template>
+</category>
+
+<!-- Regla 10 -->
+
+<category>
+<pattern> Es <set>color</set> un color </pattern>
+<template>Si, <star/> es un color </template>
+</category>
+
+<category>
+<pattern> Es * un color</pattern>
+<template>No, <star/> no es un color</template>
+</category>
+
+<!-- Regla 11 -->
+
+<category>
+<pattern>Cual es la capital de <set>pais</set></pattern>
+<template>La capital de <star/> es <map name="capital"><star/></map></template>
+</category>
+
+<category>
+<pattern>Cual es la capital de *</pattern>
+<template>No se cual es la capital de <star/></template>
+</category>
+
+<!-- Regla 12 -->
+
+<category>
+<pattern>^ cafe ^</pattern>
+<template>te gusta el cafe</template>
+</category>
+
+<!-- Regla 13 -->
+
+<category>
+<pattern>Si</pattern>
+<that>TE GUSTA EL CAFE</that>
+<template>Lo prefieres solo o con leche?</template>
 </category>
 
 </aiml>
