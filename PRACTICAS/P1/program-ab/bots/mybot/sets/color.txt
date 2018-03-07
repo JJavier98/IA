@@ -1,0 +1,15 @@
+rojo
+azul
+amarillo
+verde
+rosa
+rojo fuego
+verde hoja
+azul zafiro
+naranja
+morado
+blanco
+negro
+cian
+magenta
+amarillo pollo
