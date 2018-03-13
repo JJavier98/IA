@@ -1,0 +1,8 @@
+manzana
+amarillo
+rojo
+verde
+mediano
+semiacido
+vitamina B
+vitamina C
