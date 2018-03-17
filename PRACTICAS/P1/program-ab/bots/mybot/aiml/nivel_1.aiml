@@ -2,45 +2,157 @@
 encoding="UTF-8"?>
 <aiml version="2.0">
 
-<category>
-<pattern>^ nivel 0 ^</pattern>
-<template>
-	Has activado el modo de preguntas de la asignatura
-	<think>
-		<set name="topic">nivel_0</set>
-	</think>
-</template>
-</category>
-
-<topic name="nivel_0">
 <!-- Regla 1 -->
 
 <category>
-<pattern>^ [super+ apr+ pas+] ^ practic+ ^</pattern>
-<template>Hay que conseguir como mínimo un 50% del total dividiéndose en:
-	5% Asistencia + 5% Participación + 90% (3 entregas y 1 examen)</template>
+<pattern>^ nivel 1 ^</pattern>
+<template>
+	<think>
+		<set name="topic">nivel_1</set>
+
+		<set name="lista_frutas_totales"><readset>lista_frutas</readset></set>
+
+		<!--_______________________________________________________________________-->
+
+		<set name="aguacate"><readset>aguacate</readset></set>
+
+		<set name="cereza"><readset>cereza</readset></set>
+
+		<set name="ciruela"><readset>ciruela</readset></set>
+
+		<set name="coco"><readset>coco</readset></set>
+
+		<set name="fresa"><readset>fresa</readset></set>
+
+		<set name="higo"><readset>higo</readset></set>
+
+		<set name="kiwi"><readset>kiwi</readset></set>
+
+		<set name="mandarina"><readset>mandarina</readset></set>
+
+		<set name="mango"><readset>mango</readset></set>
+
+		<set name="manzana"><readset>manzana</readset></set>
+
+		<set name="melocoton"><readset>melocoton</readset></set>
+
+		<set name="naranja"><readset>naranja</readset></set>
+
+		<set name="nuez"><readset>nuez</readset></set>
+
+		<set name="pera"><readset>pera</readset></set>
+
+		<set name="piña"><readset>piña</readset></set>
+
+		<set name="platano"><readset>platano</readset></set>
+
+		<set name="color"><readset>color</readset></set>
+
+		<set name="tamaños"><readset>tamaños</readset></set>
+
+		<set name="vitaminas"><readset>vitaminas</readset></set>
+
+		<set name="sabores"><readset>sabores</readset></set>
+
+		<!--_______________________________________________________________________-->
+
+		<set var="cantidad_frutas"><srai>COUNT <get name="lista_frutas_totales"/></srai></set>
+
+		<set var="numero_fruta"><srai>RANDOM <get var="cantidad_frutas"/></srai></set>
+
+		<set name="fruta_elegida">
+			<srai>
+				SELECTITEM <get var="numero_fruta"/> IN <get name="lista_frutas_totales"/>
+			</srai>
+		</set>
+	</think>
+
+	Se comenzará a jugar a 'Adivina la fruta (lvl 1)'
+	Posible forma de interactuar:
+		Es/Tiene el/la 'fruta' 'atributo' 	-> frutas genericas
+		Es/Tiene 'atributo' 				-> fruta elegida
+		La fruta elegida es 'fruta' 		-> intentar adivinar
+</template>
 </category>
 
+<topic name="nivel_1">
 <!-- Regla 2 -->
 
 <category>
-<pattern>^ [evalu+ calific+ ponder+] ^ (convocatoria) ordinaria</pattern>
-<template>50% Teoría + 50% Prácticas</template>
+<pattern>^ [cono+ sab+] ^ fruta+ ^</pattern>
+<template>
+	Conozco algunas frutas.
+</template>
+</category>
+
+<category>
+<pattern>dime+</pattern>
+<that>CONOZCO ALGUNAS FRUTAS</that>
+<template>
+	<get name="lista_frutas_totales"/>
+</template>
 </category>
 
 <!-- Regla 3 -->
 
 <category>
-<pattern>^ [examen prueba control test] ^ practic+ ^ [extraordinari+ julio] ^</pattern>
+<pattern>[la el] * es una fruta</pattern>
 <template>
-	En la convocatoria extraordinaria habrá un examen escrito único (evaluado de 0 a 10) que incluirá preguntas tanto de tipo teórico como práctico que garanticen que el alumno ha adquirido la totalidad de las competencias descritas en esta misma guía docente.
+	<think>
+		<set var="existe">
+			<srai>FINDITEM <star/> IN <get name="lista_frutas_totales"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No tengo <star/> en mi registro de frutas.
+		</li>
+		<li>
+			Ya sabia que <star/> es una fruta.
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Regla 3 -->
+
+<category>
+<pattern>
+	[es tiene posee] [el la] <set>lista_frutas</set> (de) (un) ([color colores tamaño dimension dimensiones tamaños vitamina vitaminas sabor sabores]) [<set>color</set> <set>sabores</set> <set>tamaños</set> <set>vitaminas</set>]
+</pattern>
+<template>
+	<think>
+		<set var="fruta"><readset><star/></readset></set>
+		<set var="existe">
+			<srai>FINDITEM <star index="2"/> IN <get var="fruta"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			<star/> NO tiene color/sabor/tamaño/vitamina <star index="2"/>
+		</li>
+		<li>
+			<star/> SI tiene color/sabor/tamaño/vitamina <star index="2"/>
+		</li>
+	</condition>
 </template>
 </category>
 
 <category>
-<pattern>^ [extraordinaria julio] ^ [examen prueba control test] ^ practic+</pattern>
+<pattern>
+	[el la] <set>lista_frutas</set> [es tiene posee] (de) (un) ([color colores tamaño dimension dimensiones tamaños vitamina vitaminas sabor sabores]) [<set>color</set> <set>sabores</set> <set>tamaños</set> <set>vitaminas</set>]
+</pattern>
 <template>
-	<srai>EXAMEN PRACTICO EXTRAORDINARIO</srai>
+	<srai>ES EL <star/> <star index="2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>
+	[es tiene posee] (de) (un) ([color colores tamaño dimension dimensiones tamaños vitamina vitaminas sabor sabores]) [<set>color</set> <set>sabores</set> <set>tamaños</set> <set>vitaminas</set>] [el la] <set>lista_frutas</set>
+</pattern>
+<template>
+	<srai>ES EL <star index="2"/> <star/></srai>
 </template>
 </category>
 
@@ -48,457 +160,60 @@ encoding="UTF-8"?>
 
 <category>
 <pattern>
-	^ [regular+ normal+ repet+] ^ [falt+ asist+ ir v+] ^ [clase+ aula practica+ teoria+] ^
+	[es tiene posee] (de) (un) ([color colores tamaño dimension dimensiones tamaños vitamina vitaminas sabor sabores]) [<set>color</set> <set>sabores</set> <set>tamaños</set> <set>vitaminas</set>]
 </pattern>
 <template>
-	La asistencia a las clases teóricas no será obligatoria. Se requerirá que el estudiante asista al menos a alguna de las sesiones prácticas dentro de los límites de entrega de cada práctica y defienda ante el profesor el resultado de la correspondiente práctica. Si el alumno no se presenta a defender su práctica, está se dará por no presentada. La asistencia a las clases prácticas se tendrá en cuenta en la valoración de las prácticas. Puede pedir evaluación única final en su defecto.
-</template>
-</category>
-
-<category>
-<pattern>
-	^ [falt+ asist+ ir v+] ^ [regular+ normal+ repet+] ^ [clase+ aula practica+ teoria+] ^
-</pattern>
-<template>
-	<srai>REGULARMENTE FALTO A CLASE</srai>
-</template>
-</category>
-
-<category>
-<pattern>
-	^ [falt+ asist+ ir v+] ^ [clase+ aula practica+ teoria+] ^ [regular+ normal+ repet+] ^
-</pattern>
-<template>
-	<srai>REGULARMENTE FALTO A CLASE</srai>
+	<think>
+		<set var="fruta"><readset><lowercase><get name="fruta_elegida"/></lowercase></readset></set>
+		<set var="existe">
+			<srai>FINDITEM <star/> IN <get var="fruta"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			NO
+		</li>
+		<li>
+			SI
+		</li>
+	</condition>
 </template>
 </category>
 
 <!-- Regla 5 -->
 
 <category>
-<pattern>^ (menor) (minima) ^ [nota califica+] ^ (menor) (minima) (mas baja) ^ [aprob+ super+ pas+] ^</pattern>
-<template>
-	Para aprobar la asignatura es necesario tener una calificación numérica superior o igual a 5 (sobre 10). No obstante, además del requisito anterior, se establece como requisito adicional para superar la asignatura que tanto la calificación correspondiente a la parte teórica como la correspondiente a la parte práctica sean mayores o iguales a 3 (sobre 10). De no llegar a 3 sobre 10 en una de las partes, la nota no será la media, será el mínimo de las dos notas.
-</template>
-</category>
-
-<category>
-<pattern>^ [aprob+ super+ pas+] ^ (menor) (minima) ^ [nota califica+] ^ (menor) (minima) (mas baja) ^</pattern>
-<template>
-	<srai>CUAL ES LA MENOR NOTA PARA APROBAR</srai>
-</template>
-</category>
-
-<!-- Regla 6 -->
-
-<category>
-<pattern>^ practica+ ^ [obligatori+ precis+ inevitable+ necesari+] ^</pattern>
-<template>
-	Sí. Tanto en evaluacion continua, extraordinaria o unica final se realizarán pruebas para comprobar que el alumno ha superado los conocimientos asociados a la parte práctica. En cada evaluacion se realizarán estas pruebas de manera distinta.
-</template>
-</category>
-
-<category>
-<pattern>^ [obligatori+ precis+ inevitable+ necesari+] ^ practica+ ^</pattern>
-<template>
-	<srai>PRACTICA OBLIGATORIA</srai>
-</template>
-</category>
-
-<!-- Regla 7 -->
-
-<category>
 <pattern>
-	^ ([nota+ calific+ result+ punt+ cuent+]) ^ final+ ^ [val+ cuent+ ponder+ calific+ punt+] ^ ([nota+ calific+ result+ punt+ cuent+]) ^ practic+ ^ ([nota+ calific+ result+ punt+ cuent+]) ^
+	([puede quizas]) [es ser sea] (quizas) ([la el]) <set>lista_frutas</set>
 </pattern>
 <template>
-	Cada entrega de prácticas y el examen cuenta cada uno un 22.5% de la parte prácticas.
+	<think>
+		<set var="fruta"><readset><lowercase><get name="fruta_elegida"/></lowercase></readset></set>
+		<set var="existe">
+			<srai>FINDITEM <star/> IN <get var="fruta"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			NO
+			<think><set name="topic">unknow</set></think>
+			Has PERDIDO el juego. Escribe 'nivel 1' para volver a empezar.
+		</li>
+		<li>
+			SI
+			<think><set name="topic">unknow</set></think>
+			Has GANADO el juego. Escribe 'nivel 1' para volver a empezar.
+		</li>
+	</condition>
 </template>
 </category>
 
 <category>
 <pattern>
-	^ ([nota+ calific+ result+ punt+ cuent+]) ^ [val+ cuent+ ponder+ calific+ punt+] ^ ([nota+ calific+ result+ punt+ cuent+]) ^ final+ ^ practic+ ^ ([nota+ calific+ result+ punt+ cuent+]) ^
+	[la el] frut+ ([elegid+ escogid+ pensad+]) es ([la el]) <set>lista_frutas</set>
 </pattern>
 <template>
-	<srai>NOTAS FINALES CUENTAN PRACTICAS</srai>
-</template>
-</category>
-
-<category>
-<pattern>
-	^ ([nota+ calific+ result+ punt+ cuent+]) ^ [val+ cuent+ ponder+ calific+ punt+] ^ ([nota+ calific+ result+ punt+ cuent+]) ^ practic+ ^ ([nota+ calific+ result+ punt+ cuent+]) ^ final+ ^
-</pattern>
-<template>
-	<srai>NOTAS FINALES CUENTAN PRACTICAS</srai>
-</template>
-</category>
-
-<!-- Regla 8 -->
-
-<category>
-<pattern>
-	^ ([nota+ calific+ result+] final+) ^ [val+ cuent+ ponder+ calific+] ^ ([nota+ calific+ result+] final+) ^ particip+ ^ ([nota+ calific+ result+] final+) ^
-</pattern>
-<template>
-	La participación cuenta un 5% de la parte de prácticas.
-</template>
-</category>
-
-<category>
-<pattern>
-	^ ([nota+ calific+ result+] final+) ^ particip+ ^ ([nota+ calific+ result+] final+) ^ [val+ cuent+ ponder+ calific+] ^ ([nota+ calific+ result+] final+) ^
-</pattern>
-<template>
-	<srai>CUANTO VALE EN LA NOTA FINAL LA PARTICIPACION</srai>
-</template>
-</category>
-
-<!-- Regla 9 -->
-
-<category>
-<pattern>
-	^ ([obten+ cons+ adqu+ sum+ añad+]) ^ punt+ ^ ([obten+ cons+ adqu+ sum+ añad+]) ^ particip+ ^ ([obten+ cons+ adqu+ sum+ añad+]) ^
-</pattern>
-<template>
-	Siendo activo en las clases orientadas a la resolución de problemas.
-</template>
-</category>
-
-<category>
-<pattern>
-	^ ([obten+ cons+ adqu+ sum+ añad+]) ^ particip+ ^ ([obten+ cons+ adqu+ sum+ añad+]) ^ punt+ ^ ([obten+ cons+ adqu+ sum+ añad+]) ^
-</pattern>
-<template>
-	<srai>PUNTUACION PARTICIPACION</srai>
-</template>
-</category>
-
-<!-- Regla 10 -->
-
-<category>
-<pattern>
-	^ ([trabajo+ practica+ entrega+ ejercicio+]) ^ [individu+ sol+ personal+ privad+] ^ ([trabajo+ practica+ entrega+ ejercicio+]) ^
-</pattern>
-<template>Sí, tanto actividades presenciales como no presenciales son individuales.</template>
-</category>
-
-<!-- Regla 11 -->
-
-<category>
-<pattern>^ ([trabajo+ practica+ entrega+ ejercicio+]) ^ [grup+ equipo+ corro peña colectiv+ banda pand+ cuadrilla+] ^ ([trabajo+ practica+ entrega+ ejercicio+]) ^</pattern>
-<template>
-	Salvo ejercicios en los que se indique explícitamente, no se realizarán trabajos en grupo.
-</template>
-</category>
-
-<!-- Regla 12 -->
-
-<category>
-<pattern>
-	^ [trabajo+ ejercicio+] ^ [entreg+ enseñ+ ced+ proporcion+] ^
-</pattern>
-<template>Sí, es obligatorio darlos el día y clase fechados</template>
-</category>
-
-<category>
-<pattern>
-	^ [enseñ+ entregar entreg+ ced+ proporcion+] ^ [trabajo+ ejercicio+] ^
-</pattern>
-<template><srai>TRABAJO CEDIDO</srai></template>
-</category>
-
-<!-- Regla 13 -->
-
-<category>
-<pattern>
-	^ primer+ [examen prueba test control prueba] ^ teori+ ^
-</pattern>
-<template>
-	Cuenta el 50% del total de la parte teorica.
-</template>
-</category>
-
-<category>
-<pattern>
-	^ teori+ ^ primer+ [examen prueba test control prueba] ^
-</pattern>
-<template>Lo prefieres solo o con leche?</template>
-</category>
-
-<!-- Regla 14 -->
-
-<category>
-<pattern>
-	^ [recupera+ repeti+ volver] ^ [examen prueba test control practic+ entreg+] ^
-</pattern>
-<template>Sí, te lo mereces</template>
-</category>
-
-<category>
-<pattern>
-	^ [examen prueba test control practic+ entreg+] ^ [recupera+ repeti+ volver] ^
-</pattern>
-<template>
-	<srai>RECUPERAR EXAMEN</srai>
-</template>
-</category>
-
-<!-- Regla 15 -->
-
-<category>
-<pattern>
-	^ [copi+ oje+] ^
-</pattern>
-<template>Suspenden los dos implicados: el que copia y el que se deja</template>
-</category>
-
-<category>
-<pattern>
-	^ [mir+ oje+ ech+] ^ [examen prueba test control practic+ entreg+] ^ [lado vecin+ compañer+ amig+] ^
-</pattern>
-<template><srai>COPIAR</srai></template>
-</category>
-
-<category>
-<pattern>
-	^ [lado vecin+ compañer+ amig+] ^ [mir+ oje+ ech+] ^ [examen prueba test control practic+ entreg+] ^
-</pattern>
-<template><srai>COPIAR</srai></template>
-</category>
-
-<!-- Regla 16 -->
-
-<category>
-<pattern>
-	^ [dej+ permit+] ^ [copi+ oje+] ^
-</pattern>
-<template><srai>COPIAR</srai></template>
-</category>
-
-
-<!-- Regla 17 -->
-
-<category>
-<pattern>
-	^ suspend+ ^ [ordinaria final] ^
-</pattern>
-<template>Podrás recuperar la asignatura en un examen único en la convocatoria extraordinaria</template>
-</category>
-
-<category>
-<pattern>
-	^ [ordinaria final] ^ suspend+ ^
-</pattern>
-<template><srai>SUSPENDER ORDINARIA</srai></template>
-</category>
-
-<category>
-<pattern>
-	^ no [aprueb+ aprob+ super+ pas+] ^ [ordinaria final] ^
-</pattern>
-<template><srai>SUSPENDER ORDINARIA</srai></template>
-</category>
-
-<category>
-<pattern>
-	^ [ordinaria final] ^ no [aprueb+ aprob+ super+ pas+] ^
-</pattern>
-<template><srai>SUSPENDER ORDINARIA</srai></template>
-</category>
-
-<!-- Regla 18 -->
-
-<category>
-<pattern>
-	^ practica+ ^ teoria+ ^
-</pattern>
-<template><srai>EVALUACION ORDINARIA</srai></template>
-</category>
-
-<!-- Regla 19 -->
-
-<category>
-<pattern>
-	^ tutor+ ^
-</pattern>
-<template>
-	Lunes de 10:00 a 13:00 en D24 (ETSIIT) - Miércoles de 10:00 a 13:00 en D24 (ETSIIT)
-</template>
-</category>
-
-<category>
-<pattern>
-	^ qued+ ^ [profes+ tutor+] ^
-</pattern>
-<template>
-	<srai>TUTOR</srai>
-</template>
-</category>
-
-<!-- Regla 20 -->
-
-<category>
-<pattern>
-	^ no ^ [present+ entreg+ envi+ sub+] ^ practica ^
-</pattern>
-<template>
-	La práctica no entregada puntuará 0. Si con las demás alcanzas el 5 estarás aprobado
-</template>
-</category>
-
-<category>
-<pattern>
-	^ practica ^ no ^ [present+ entreg+ envi+ sub+] ^
-</pattern>
-<template>
-	<srai>NO PRESENTO PRACTICA</srai>
-</template>
-</category>
-
-<category>
-<pattern>
-	^ [falta+] ^ practica ^
-</pattern>
-<template>
-	<srai>NO PRESENTO PRACTICA</srai>
-</template>
-</category>
-
-<!-- Regla 21 -->
-
-<category>
-<pattern>
-	^ minima ^ media ^
-</pattern>
-<template>
-	40% de la parte completa
-</template>
-</category>
-
-<category>
-<pattern>
-	^ media ^ minima ^
-</pattern>
-<template>
-	<srai>MINIMA MEDIA</srai>
-</template>
-</category>
-
-<!-- Regla 22 -->
-
-<category>
-<pattern>
-	# def+ # nivel 3 #
-</pattern>
-<template>
-	Siempre y cuando no se supere únicamente el nivel 3 se obtendrán 6 ptos.
-</template>
-</category>
-
-<category>
-<pattern>
-	# nivel 3 # def+ # 
-</pattern>
-<template>
-	<srai>DEFENDER NIVEL 3</srai>
-</template>
-</category>
-
-<!-- Regla 23 -->
-
-<category>
-<pattern>
-	# nivel 0 #
-</pattern>
-<template>
-	Es la base para entregar la práctica. Si no se entrega o está mal no se puntuará lo demás.
-</template>
-</category>
-
-<!-- Regla 24 -->
-
-<category>
-<pattern>
-	^ [falt+ asist+ ir v+] ^ defen+ ^
-</pattern>
-<template>
-	Se debe avisar con antelación al profesor.
-</template>
-</category>
-
-<!-- Regla 25 -->
-
-<category>
-<pattern>
-	^ [cuant+ cantidad numero total] ^ [parcial+ examen+ prueba+ test+ control+] ^ (teori+) ^
-</pattern>
-<template>
-	2 parciales.
-</template>
-</category>
-
-<!-- Regla 26 -->
-
-<category>
-<pattern>
-	^ [cuant+ que] [val+ cuent+ ponder+ calific+ punt+] ^ [parcial+ examen+ prueba+ test+ control+] ^ (teori+) ^
-</pattern>
-<template>
-	<srai>PRIMER EXAMEN TEORIA</srai>
-</template>
-</category>
-
-<!-- Regla 27 -->
-
-<category>
-<pattern>
-	^ [parcial+ examen+ prueba+ test+ control+] ^ [ejercicio+ problema+] ^
-</pattern>
-<template>
-	Se realizará junto al examen de teoria y consistirá en resolver una serie de ejercicios parecidos a los resueltos en clase.
-</template>
-</category>
-
-<category>
-<pattern>
-	^ [ejercicio+ problema+] ^ [parcial+ examen+ prueba+ test+ control+] ^
-</pattern>
-<template>
-	<srai>PARCIAL PROBLEMAS</srai>
-</template>
-</category>
-
-<!-- Regla 28 -->
-
-<category>
-<pattern>
-	# [segur+ creo quizas hacer hago deb+ capaz+ pod+ pued+] # nivel 3 # 
-</pattern>
-<template>
-	Apunta por un nivel inferior
-</template>
-</category>
-
-<!-- Regla 29 -->
-
-<category>
-<pattern>
-	^ [lenguaje c c++] ^
-</pattern>
-<template>
-	No, la práctica se ha diseñado para hacerla en aiml y así aprendais este lenguaje.
-</template>
-</category>
-
-<!-- Regla 30 -->
-
-<category>
-<pattern>
-	^ [agente conversacional siri cortana asistente ia] ^
-</pattern>
-<template>
-	Si consiguieras hacer eso tendrias un 10 en la asignatura
+	<srai>ES <star/></srai>
 </template>
 </category>
 

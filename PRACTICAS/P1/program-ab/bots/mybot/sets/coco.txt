@@ -1,6 +1,11 @@
 coco
 marron
+marrones
 grande
+grandes
 neutro
+neutra
+neutros
+neutras
 vitamina B
 vitamina C

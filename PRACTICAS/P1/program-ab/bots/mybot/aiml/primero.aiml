@@ -2,6 +2,18 @@
 encoding="UTF-8"?>
 <aiml version="2.0">
 
+<category>
+<pattern>primero</pattern>
+<template>
+	Has activado el ejercicio de seminario
+	<think>
+		<set name="topic">primero</set>
+	</think>
+</template>
+</category>
+
+<topic name="primero">
+
 <!-- Regla 1 -->
 
 <category>
@@ -121,4 +133,5 @@ encoding="UTF-8"?>
 <template>Lo prefieres solo o con leche?</template>
 </category>
 
+</topic>
 </aiml>

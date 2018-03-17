@@ -1,8 +1,21 @@
 manzana
 amarillo
+amarilla
+amarillos
+amarillas
 rojo
+roja
+rojos
+rojas
 verde
+verdes
 mediano
+mediana
+medianos
+medianas
 semiacido
+semiacida
+semiacidos
+semiacidas
 vitamina B
 vitamina C

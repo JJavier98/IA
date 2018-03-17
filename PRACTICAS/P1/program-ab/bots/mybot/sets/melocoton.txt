@@ -1,7 +1,17 @@
 melocoton
 amarillo
+amarilla
+amarillos
+amarillas
 naranja
+naranjas
 mediano
+mediana
+medianos
+medianas
 semiacido
+semiacida
+semiacidos
+semiacidas
 vitamina A
 vitamina B

@@ -1,15 +1,18 @@
 rojo
-azul
+roja
+rojos
+rojas
 amarillo
+amarilla
+amarillos
+amarillas
 verde
-rosa
-rojo fuego
-verde hoja
-azul zafiro
+verdes
 naranja
+naranjas
+marron
+marrones
 morado
-blanco
-negro
-cian
-magenta
-amarillo pollo
+morada
+morados
+moradas

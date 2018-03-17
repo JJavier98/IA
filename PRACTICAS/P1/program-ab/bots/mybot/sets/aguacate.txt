@@ -1,6 +1,13 @@
 aguacate
 verde
+verdes
 mediano
+mediana
+medianos
+medianas
 neutro
+neutra
+neutros
+neutras
 vitamina B
 vitamina C

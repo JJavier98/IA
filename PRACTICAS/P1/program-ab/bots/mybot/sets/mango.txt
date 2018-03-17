@@ -1,7 +1,12 @@
 mango
 verde
+verdes
 grande
+grandes
 semiacido
+semiacida
+semiacidos
+semiacidas
 vitamina A
 vitamina B
 vitamina C
