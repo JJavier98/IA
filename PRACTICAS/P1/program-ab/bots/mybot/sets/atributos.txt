@@ -1,0 +1,16 @@
+pequeño
+mediano
+grande
+acido
+dulce
+neutro
+semiacido
+A
+B
+C
+rojo
+verde
+amarillo
+marron
+morado
+naranja

@@ -30,6 +30,8 @@ encoding="UTF-8"?>
 </template>
 </category>
 
+<!-- TAMAÑOS -->
+
 <category>
 <pattern>si</pattern>
 <that>ES PEQUEÑO/A</that>
@@ -48,19 +50,21 @@ encoding="UTF-8"?>
 		<li>
 			<think>
 				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
-			</think>
+			
 				<set var="existe">
 					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
 				</set>
-			
+			</think>
 			<condition var="existe">
-				<li value="0"><!--Comprobar si elimina-->
+				<li value="0">
 					<think>
 						<set var="numero_elimina">
 							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
 						</set>
 
-						<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
 					</think>
 				</li>
 				<li></li>
@@ -70,10 +74,1916 @@ encoding="UTF-8"?>
 					<srai>NEXT</srai>
 				</set>
 			</think>
-		<loop/><!--Mirar loop-->
+			<loop/>
 		</li>
 	</condition>
+	Es dulce
+</template>
+</category>
 
+<category>
+<pattern>no</pattern>
+<that>ES PEQUEÑO/A</that>
+<template>
+	<think>
+		<set var="atributo">pequeño</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	Es grande
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>ES GRANDE</that>
+<template>
+
+	<think>
+		<set var="atributo">grande</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	Es dulce
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>ES GRANDE</that>
+<template>
+	<think>
+		<set var="atributo">grande</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	Es dulce
+</template>
+</category>
+
+<!-- SABORES -->
+
+<!-- DULCE -->
+
+<category>
+<pattern>si</pattern>
+<that>ES DULCE</that>
+<template>
+
+	<think>
+		<set var="atributo">dulce</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es dulce - Es acido/a
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>ES DULCE</that>
+<template>
+	<think>
+		<set var="atributo">dulce</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES DULCE - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es acido/a</li>
+	</condition>
+</template>
+</category>
+
+<!-- ACIDO -->
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta no es dulce - Es acido/a</that>
+<template>
+
+	<think>
+		<set var="atributo">acido</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es ACIDO/A - Es neutro/a
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>ES ACIDO/A</that>
+<template>
+
+	<think>
+		<set var="atributo">acido</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es ACIDO/A - Es neutro/a
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>ES ACIDO/A</that>
+<template>
+	<think>
+		<set var="atributo">acido</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES ACIDO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es neutro/a</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta no es dulce - Es acido/a</that>
+<template>
+	<think>
+		<set var="atributo">acido</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES ACIDO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es neutro/a</li>
+	</condition>
+</template>
+</category>
+
+<!-- NEUTRO -->
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta no es ACIDO/A - Es neutro/a</that>
+<template>
+
+	<think>
+		<set var="atributo">neutro</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es NEUTRO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta no es acido/a - Es neutro/a</that>
+<template>
+	<think>
+		<set var="atributo">neutro</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES NEUTRO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>ES NEUTRO/A</that>
+<template>
+
+	<think>
+		<set var="atributo">neutro</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es NEUTRO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>ES NEUTRO/A</that>
+<template>
+	<think>
+		<set var="atributo">neutro</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES NEUTRO/A - Tiene vitamina A
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Tiene vitamina A</li>
+	</condition>
+</template>
+</category>
+
+<!-- VITAMINAS -->
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta si es dulce - Tiene vitamina A</that>
+<template>
+
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no tiene vitamina A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta si es dulce - Tiene vitamina A</that>
+<template>
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI TIENE VITAMINA A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta si es acido/a - Tiene vitamina A</that>
+<template>
+
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no tiene vitamina A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta si es acido/a - Tiene vitamina A</that>
+<template>
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI TIENE VITAMINA A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta si es neutro/a - Tiene vitamina A</that>
+<template>
+
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no tiene vitamina A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta si es neutro/a - Tiene vitamina A</that>
+<template>
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI TIENE VITAMINA A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta no es neutro/a - Tiene vitamina A</that>
+<template>
+
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no tiene vitamina A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta no es neutro/a - Tiene vitamina A</that>
+<template>
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI TIENE VITAMINA A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>TIENE VITAMINA A</that>
+<template>
+
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no tiene vitamina A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>TIENE VITAMINA A</that>
+<template>
+	<think>
+		<set var="atributo">A</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI TIENE VITAMINA A - Es verde
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>Es verde</li>
+	</condition>
+</template>
+</category>
+
+<!--B-->
+
+<category>
+<pattern>si</pattern>
+<that>Es verde</that>
+<template>
+
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es verde - no se cual es
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>no se cual es</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Es verde</that>
+<template>
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES VERDE - NO SE CUAL ES
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>NO SE CUAL ES</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta no tiene vitamina A - Es verde</that>
+<template>
+
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es verde - no se cual es
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>no se cual es</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta no tiene vitamina A - Es verde</that>
+<template>
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES VERDE - NO SE CUAL ES
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>NO SE CUAL ES</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>si</pattern>
+<that>Mentira tu fruta si tiene vitamina A - Es verde</that>
+<template>
+
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0">
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+				<li></li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			Mentira tu fruta no es verde - no se cual es
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>no se cual es</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<that>Mentira tu fruta si tiene vitamina A - Es verde</that>
+<template>
+	<think>
+		<set var="atributo">verde</set>
+
+		<set name="item">
+				<srai> ITERATE <get name="lista_frutas_mod"/> </srai>
+		</set>
+
+		<set var="temporal"><get name="lista_frutas_mod"/></set>
+	</think>
+
+	<condition name="item">
+		<li value="end"></li>
+		<li>
+			<think>
+				<set var="fruta_inspeccionada"><readset><lowercase><get name="item"/></lowercase></readset></set>
+			
+				<set var="existe">
+					<srai>FINDITEM <get var="atributo"/> IN <get var="fruta_inspeccionada"/></srai>
+				</set>
+			</think>
+			<condition var="existe">
+				<li value="0"></li>
+				<li>
+					<think>
+						<set var="numero_elimina">
+							<srai>FINDITEM <get name="item"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+
+						<set name="lista_frutas_mod">
+							<srai>REMOVEITEM <get var="numero_elimina"/> IN <get name="lista_frutas_mod"/></srai>
+						</set>
+					</think>
+				</li>
+			</condition>
+			<think>
+				<set name="item">
+					<srai>NEXT</srai>
+				</set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+	<think>
+		<set var="vacio">
+			<srai>COUNT <get name="lista_frutas_mod"/></srai>
+		</set>
+	</think>
+	<condition var="vacio">
+		<li value="0">
+			MENTIRA TU FRUTA SI ES VERDE - NO SE CUAL ES
+			<think>
+				<set name="lista_frutas_mod"><get var="temporal"/></set>
+			</think>
+		</li>
+		<li value="1">
+			A QUE TU FRUTA ES: <get name="lista_frutas_mod"/>
+		</li>
+		<li>NO SE CUAL ES</li>
+	</condition>
+</template>
+</category>
+
+
+
+
+
+<category>
+<pattern>no</pattern>
+<that>A QUE TU FRUTA ES: *</that>
+<template>
+	ESTOY SEGURO DE QUE HE ACERTADO PERO BUENO.... INTRODUCE 'nivel 2' Y DEJAME INTENTARLO OTRA VEZ
+</template>
+</category>
+
+<category>
+<pattern>SI</pattern>
+<that>A QUE TU FRUTA ES: *</that>
+<template>
+	YAASSSSSSS - INTRODUCE 'nivel 2' PARA PONERME A PRUEBA DE NUEVO
 </template>
 </category>
 

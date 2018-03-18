@@ -24,7 +24,7 @@ encoding="UTF-8"?>
 <!-- Regla 2 -->
 
 <category>
-<pattern>^ [evalu+ calific+ ponder+] ^ (convocatoria) ordinaria</pattern>
+<pattern>^ [evalu+ calific+ ponder+ punt+] ^ (convocatoria) ordinaria</pattern>
 <template>50% Teoría + 50% Prácticas</template>
 </category>
 

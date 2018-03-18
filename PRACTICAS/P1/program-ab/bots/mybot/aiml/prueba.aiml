@@ -1,0 +1,58 @@
+<?xml version="1.0"
+encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+<pattern>jota</pattern>
+<template>
+
+	<think>
+		<set var="atributos"><readset>atributos</readset></set>
+
+		<set var="i_atrb">
+			<srai>TOP <get var="atributos"/></srai>
+		</set>
+
+		<set var="atributos"><srai>REMAIN <get var="atributos"/></srai></set>
+
+
+		<set var="lista"><readset>lista_frutas</readset></set>
+
+		<set var="i_fruta">
+			<srai>TOP <get var="lista"/></srai>
+		</set>
+
+		<set var="lista"><srai>REMAIN <get var="lista"/></srai></set>
+	</think>
+
+	<condition var="i_atrb">
+		<li value="end"></li>
+		<li>
+
+			<condition var="i_fruta">
+				<li value="end"></li>
+				<li>
+					<set var="i_fruta">
+						<srai>TOP <get var="lista"/></srai>
+					</set>
+
+					<think>
+						<set var="lista"><srai>REMAIN <get var="lista"/></srai></set>
+					</think>
+					<loop/>
+				</li>
+			</condition>
+			<set var="i_atrb">
+				<srai>TOP <get var="atributos"/></srai>
+			</set>
+			<think>
+				<set var="atributos"><srai>REMAIN <get var="atributos"/></srai></set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+</template>
+</category>
+
+
+</aiml>
