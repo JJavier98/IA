@@ -16,7 +16,7 @@ encoding="UTF-8"?>
 <!-- Regla 1 -->
 
 <category>
-<pattern>^ [super+ apr+ pas+] ^ practic+ ^</pattern>
+<pattern>^ [super+ aprob+ pas+ aprueb+] ^ practic+ ^</pattern>
 <template>Hay que conseguir como mínimo un 50% del total dividiéndose en:
 	5% Asistencia + 5% Participación + 90% (3 entregas y 1 examen)</template>
 </category>
