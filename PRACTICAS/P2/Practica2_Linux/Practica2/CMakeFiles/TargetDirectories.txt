@@ -1,0 +1,9 @@
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/rebuild_cache.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/edit_cache.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/BelkanSG.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/GLUILib.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/Belkan.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/obj3DLib.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/motorLib.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/modelosBelkanLib.dir
+/home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/CMakeFiles/comportamientosLib.dir
