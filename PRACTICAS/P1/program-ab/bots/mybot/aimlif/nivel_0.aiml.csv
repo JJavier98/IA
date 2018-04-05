@@ -1,0 +1,55 @@
+0,^ NIVEL 0 ^,*,*,Has activado el modo de preguntas de la asignatura#Newline	<think>#Newline		<set name="topic">nivel_0</set>#Newline	</think>,nivel_0.aiml
+0,^ [SUPER+ APROB+ PAS+ APRUEB+] ^ PRACTIC+ ^,*,NIVEL_0,Hay que conseguir como mínimo un 50% del total dividiéndose en:#Newline	5% Asistencia + 5% Participación + 90% (3 entregas y 1 examen),nivel_0.aiml
+0,^ [EVALU+ CALIFIC+ PONDER+ PUNT+] ^ (CONVOCATORIA) ORDINARIA+,*,NIVEL_0,50% Teoría + 50% Prácticas,nivel_0.aiml
+0,^ [EXAMEN PRUEBA CONTROL TEST] ^ PRACTIC+ ^ [EXTRAORDINARI+ JULIO] ^,*,NIVEL_0,En la convocatoria extraordinaria habrá un examen escrito único (evaluado de 0 a 10) que incluirá preguntas tanto de tipo teórico como práctico que garanticen que el alumno ha adquirido la totalidad de las competencias descritas en esta misma guía docente.,nivel_0.aiml
+0,^ [EXTRAORDINARIA JULIO] ^ [EXAMEN PRUEBA CONTROL TEST] ^ PRACTIC+,*,NIVEL_0,<srai>EXAMEN PRACTICO EXTRAORDINARIO</srai>,nivel_0.aiml
+0,^ [REGULAR+ NORMAL+ REPET+] ^ [FALT+ ASIST+ IR V+] ^ [CLASE+ AULA PRACTICA+ TEORIA+] ^,*,NIVEL_0,La asistencia a las clases teóricas no será obligatoria. Se requerirá que el estudiante asista al menos a alguna de las sesiones prácticas dentro de los límites de entrega de cada práctica y defienda ante el profesor el resultado de la correspondiente práctica. Si el alumno no se presenta a defender su práctica#Comma está se dará por no presentada. La asistencia a las clases prácticas se tendrá en cuenta en la valoración de las prácticas. Puede pedir evaluación única final en su defecto.,nivel_0.aiml
+0,^ [FALT+ ASIST+ IR V+] ^ [REGULAR+ NORMAL+ REPET+] ^ [CLASE+ AULA PRACTICA+ TEORIA+] ^,*,NIVEL_0,<srai>REGULARMENTE FALTO A CLASE</srai>,nivel_0.aiml
+0,^ [FALT+ ASIST+ IR V+] ^ [CLASE+ AULA PRACTICA+ TEORIA+] ^ [REGULAR+ NORMAL+ REPET+] ^,*,NIVEL_0,<srai>REGULARMENTE FALTO A CLASE</srai>,nivel_0.aiml
+0,^ (MENOR) (MINIMA) ^ [NOTA CALIFICA+] ^ (MENOR) (MINIMA) (MAS BAJA) ^ [APROB+ SUPER+ PAS+] ^,*,NIVEL_0,Para aprobar la asignatura es necesario tener una calificación numérica superior o igual a 5 (sobre 10). No obstante#Comma además del requisito anterior#Comma se establece como requisito adicional para superar la asignatura que tanto la calificación correspondiente a la parte teórica como la correspondiente a la parte práctica sean mayores o iguales a 3 (sobre 10). De no llegar a 3 sobre 10 en una de las partes#Comma la nota no será la media#Comma será el mínimo de las dos notas.,nivel_0.aiml
+0,^ [APROB+ SUPER+ PAS+] ^ (MENOR) (MINIMA) ^ [NOTA CALIFICA+] ^ (MENOR) (MINIMA) (MAS BAJA) ^,*,NIVEL_0,<srai>CUAL ES LA MENOR NOTA PARA APROBAR</srai>,nivel_0.aiml
+0,^ PRACTICA+ ^ [OBLIGATORI+ PRECIS+ INEVITABLE+ NECESARI+] ^,*,NIVEL_0,Sí. Tanto en evaluacion continua#Comma extraordinaria o unica final se realizarán pruebas para comprobar que el alumno ha superado los conocimientos asociados a la parte práctica. En cada evaluacion se realizarán estas pruebas de manera distinta.,nivel_0.aiml
+0,^ TEN+ QUE (IR ASISTIR) ^ PRACTICA+ ^,*,NIVEL_0,Sí. Tanto en evaluacion continua#Comma extraordinaria o unica final se realizarán pruebas para comprobar que el alumno ha superado los conocimientos asociados a la parte práctica. En cada evaluacion se realizarán estas pruebas de manera distinta.,nivel_0.aiml
+0,^ [OBLIGATORI+ PRECIS+ INEVITABLE+ NECESARI+] ^ PRACTICA+ ^,*,NIVEL_0,<srai>PRACTICA OBLIGATORIA</srai>,nivel_0.aiml
+0,^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ FINAL+ ^ [VAL+ CUENT+ PONDER+ CALIFIC+ PUNT+] ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ PRACTIC+ ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^,*,NIVEL_0,Cada entrega de prácticas y el examen cuenta cada uno un 22.5% de la parte prácticas.,nivel_0.aiml
+0,^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ [VAL+ CUENT+ PONDER+ CALIFIC+ PUNT+] ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ FINAL+ ^ PRACTIC+ ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^,*,NIVEL_0,<srai>NOTAS FINALES CUENTAN PRACTICAS</srai>,nivel_0.aiml
+0,^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ [VAL+ CUENT+ PONDER+ CALIFIC+ PUNT+] ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ PRACTIC+ ^ ([NOTA+ CALIFIC+ RESULT+ PUNT+ CUENT+]) ^ FINAL+ ^,*,NIVEL_0,<srai>NOTAS FINALES CUENTAN PRACTICAS</srai>,nivel_0.aiml
+0,^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^ [VAL+ CUENT+ PONDER+ CALIFIC+] ^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^ PARTICIP+ ^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^,*,NIVEL_0,La participación cuenta un 5% de la parte de prácticas.,nivel_0.aiml
+0,^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^ PARTICIP+ ^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^ [VAL+ CUENT+ PONDER+ CALIFIC+] ^ ([NOTA+ CALIFIC+ RESULT+] FINAL+) ^,*,NIVEL_0,<srai>CUANTO VALE EN LA NOTA FINAL LA PARTICIPACION</srai>,nivel_0.aiml
+0,^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^ PUNT+ ^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^ PARTICIP+ ^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^,*,NIVEL_0,Siendo activo en las clases orientadas a la resolución de problemas.,nivel_0.aiml
+0,^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^ PARTICIP+ ^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^ PUNT+ ^ ([OBTEN+ CONS+ ADQU+ SUM+ AÑAD+]) ^,*,NIVEL_0,<srai>PUNTUACION PARTICIPACION</srai>,nivel_0.aiml
+0,^ ([TRABAJO+ PRACTICA+ ENTREGA+ EJERCICIO+]) ^ [INDIVIDU+ SOL+ PERSONAL+ PRIVAD+] ^ ([TRABAJO+ PRACTICA+ ENTREGA+ EJERCICIO+]) ^,*,NIVEL_0,Sí#Comma tanto actividades presenciales como no presenciales son individuales.,nivel_0.aiml
+0,^ ([TRABAJO+ PRACTICA+ ENTREGA+ EJERCICIO+]) ^ [GRUP+ EQUIPO+ CORRO PEÑA COLECTIV+ BANDA PAND+ CUADRILLA+] ^ ([TRABAJO+ PRACTICA+ ENTREGA+ EJERCICIO+]) ^,*,NIVEL_0,Salvo ejercicios en los que se indique explícitamente#Comma no se realizarán trabajos en grupo.,nivel_0.aiml
+0,^ [TRABAJO+ EJERCICIO+] ^ [ENTREG+ ENSEÑ+ CED+ PROPORCION+] ^,*,NIVEL_0,Sí#Comma es obligatorio darlos el día y clase fechados,nivel_0.aiml
+0,^ [ENSEÑ+ ENTREGAR ENTREG+ CED+ PROPORCION+] ^ [TRABAJO+ EJERCICIO+] ^,*,NIVEL_0,<srai>TRABAJO CEDIDO</srai>,nivel_0.aiml
+0,^ PRIMER+ [EXAMEN PRUEBA TEST CONTROL PRUEBA] ^ TEORI+ ^,*,NIVEL_0,Cuenta el 50% del total de la parte teorica.,nivel_0.aiml
+0,^ TEORI+ ^ PRIMER+ [EXAMEN PRUEBA TEST CONTROL PRUEBA] ^,*,NIVEL_0,Lo prefieres solo o con leche?,nivel_0.aiml
+0,^ [RECUPERA+ REPETI+ VOLVER] ^ [EXAMEN PRUEBA TEST CONTROL PRACTIC+ ENTREG+] ^,*,NIVEL_0,Sí#Comma te lo mereces,nivel_0.aiml
+0,^ [EXAMEN PRUEBA TEST CONTROL PRACTIC+ ENTREG+] ^ [RECUPERA+ REPETI+ VOLVER] ^,*,NIVEL_0,<srai>RECUPERAR EXAMEN</srai>,nivel_0.aiml
+0,^ [COPI+ OJE+] ^,*,NIVEL_0,Suspenden los dos implicados: el que copia y el que se deja,nivel_0.aiml
+0,^ [MIR+ OJE+ ECH+] ^ [EXAMEN PRUEBA TEST CONTROL PRACTIC+ ENTREG+] ^ [LADO VECIN+ COMPAÑER+ AMIG+] ^,*,NIVEL_0,<srai>COPIAR</srai>,nivel_0.aiml
+0,^ [LADO VECIN+ COMPAÑER+ AMIG+] ^ [MIR+ OJE+ ECH+] ^ [EXAMEN PRUEBA TEST CONTROL PRACTIC+ ENTREG+] ^,*,NIVEL_0,<srai>COPIAR</srai>,nivel_0.aiml
+0,^ [DEJ+ PERMIT+] ^ [COPI+ OJE+] ^,*,NIVEL_0,<srai>COPIAR</srai>,nivel_0.aiml
+0,^ SUSPEND+ ^ [ORDINARIA FINAL] ^,*,NIVEL_0,Podrás recuperar la asignatura en un examen único en la convocatoria extraordinaria,nivel_0.aiml
+0,^ [ORDINARIA FINAL] ^ SUSPEND+ ^,*,NIVEL_0,<srai>SUSPENDER ORDINARIA</srai>,nivel_0.aiml
+0,^ NO [APRUEB+ APROB+ SUPER+ PAS+] ^ [ORDINARIA FINAL] ^,*,NIVEL_0,<srai>SUSPENDER ORDINARIA</srai>,nivel_0.aiml
+0,^ [ORDINARIA FINAL] ^ NO [APRUEB+ APROB+ SUPER+ PAS+] ^,*,NIVEL_0,<srai>SUSPENDER ORDINARIA</srai>,nivel_0.aiml
+0,^ PRACTICA+ ^ TEORIA+ ^,*,NIVEL_0,<srai>EVALUACION ORDINARIA</srai>,nivel_0.aiml
+0,^ TUTOR+ ^,*,NIVEL_0,Lunes de 10:00 a 13:00 en D24 (ETSIIT) - Miércoles de 10:00 a 13:00 en D24 (ETSIIT),nivel_0.aiml
+0,^ QUED+ ^ [PROFES+ TUTOR+] ^,*,NIVEL_0,<srai>TUTOR</srai>,nivel_0.aiml
+0,^ NO ^ [PRESENT+ ENTREG+ ENVI+ SUB+] ^ PRACTICA ^,*,NIVEL_0,La práctica no entregada puntuará 0. Si con las demás alcanzas el 5 estarás aprobado,nivel_0.aiml
+0,^ PRACTICA ^ NO ^ [PRESENT+ ENTREG+ ENVI+ SUB+] ^,*,NIVEL_0,<srai>NO PRESENTO PRACTICA</srai>,nivel_0.aiml
+0,^ [FALTA+] ^ PRACTICA ^,*,NIVEL_0,<srai>NO PRESENTO PRACTICA</srai>,nivel_0.aiml
+0,^ MINIMA ^ MEDIA ^,*,NIVEL_0,40% de la parte completa,nivel_0.aiml
+0,^ MEDIA ^ MINIMA ^,*,NIVEL_0,<srai>MINIMA MEDIA</srai>,nivel_0.aiml
+0,# DEF+ # NIVEL 3 #,*,NIVEL_0,Siempre y cuando no se supere únicamente el nivel 3 se obtendrán 6 ptos.,nivel_0.aiml
+0,# NIVEL 3 # DEF+ #,*,NIVEL_0,<srai>DEFENDER NIVEL 3</srai>,nivel_0.aiml
+0,# NIVEL 0 #,*,NIVEL_0,Es la base para entregar la práctica. Si no se entrega o está mal no se puntuará lo demás.,nivel_0.aiml
+0,^ [FALT+ ASIST+ IR V+] ^ DEFEN+ ^,*,NIVEL_0,Se debe avisar con antelación al profesor.,nivel_0.aiml
+0,^ [CUANT+ CANTIDAD NUMERO TOTAL] ^ [PARCIAL+ EXAMEN+ PRUEBA+ TEST+ CONTROL+] ^ (TEORI+) ^,*,NIVEL_0,2 parciales.,nivel_0.aiml
+0,^ [CUANT+ QUE] [VAL+ CUENT+ PONDER+ CALIFIC+ PUNT+] ^ [PARCIAL+ EXAMEN+ PRUEBA+ TEST+ CONTROL+] ^ (TEORI+) ^,*,NIVEL_0,<srai>PRIMER EXAMEN TEORIA</srai>,nivel_0.aiml
+0,^ [PARCIAL+ EXAMEN+ PRUEBA+ TEST+ CONTROL+] ^ [EJERCICIO+ PROBLEMA+] ^,*,NIVEL_0,Se realizará junto al examen de teoria y consistirá en resolver una serie de ejercicios parecidos a los resueltos en clase.,nivel_0.aiml
+0,^ [EJERCICIO+ PROBLEMA+] ^ [PARCIAL+ EXAMEN+ PRUEBA+ TEST+ CONTROL+] ^,*,NIVEL_0,<srai>PARCIAL PROBLEMAS</srai>,nivel_0.aiml
+0,# [SEGUR+ CREO QUIZAS HACER HAGO DEB+ CAPAZ+ POD+ PUED+] # NIVEL 3 #,*,NIVEL_0,Apunta por un nivel inferior,nivel_0.aiml
+0,^ [LENGUAJE C C++] ^,*,NIVEL_0,No#Comma la práctica se ha diseñado para hacerla en aiml y así aprendais este lenguaje.,nivel_0.aiml
+0,^ [AGENTE CONVERSACIONAL SIRI CORTANA ASISTENTE IA] ^,*,NIVEL_0,Si consiguieras hacer eso tendrias un 10 en la asignatura,nivel_0.aiml

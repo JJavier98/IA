@@ -1,0 +1,16 @@
+0,PRIMERO,*,*,Has activado el ejercicio de seminario#Newline	<think>#Newline		<set name="topic">primero</set>#Newline	</think>,primero.aiml
+0,HOLA *,*,PRIMERO,<random>#Newline		<li>Hola#Comma que tal?</li>#Newline		<li>Hola!</li>#Newline		<li>Buenas#Comma que tal?</li>#Newline		<li>Que pasa tronco?</li>#Newline	</random>,primero.aiml
+0,* QUE TAL TU,*,PRIMERO,Estoy genial!!!,primero.aiml
+0,^ ME LLAMO *,*,PRIMERO,<think><set name="nombre"><star index="2"/></set></think>#Newline	<get name="nombre"/> es un bonito nombre#Comma yo también tengo uno#Comma me llamo HALberto,primero.aiml
+0,HOLA,*,PRIMERO,Hola de nuevo <get name="nombre"/>#Comma que tal?,primero.aiml
+0,CUAL ES TU EDAD,*,PRIMERO,Tengo <bot name="age"/> anios,primero.aiml
+0,CUAL ES MI NOMBRE,*,PRIMERO,<condition name="nombre">#Newline	<li value="unknown">Aun no me has dicho tu nombre</li>#Newline	<li> Tu nombre es <get name="nombre"/></li>#Newline	</condition>,primero.aiml
+0,MI COLOR FAVORITO ES EL *,*,PRIMERO,<think><set var="color"><star/></set></think>#Newline	El <get var="color"/> es un color que no me gusta.,primero.aiml
+0,* MI NOMBRE,*,PRIMERO,<srai>CUAL ES MI NOMBRE</srai>,primero.aiml
+0,^ ME LLAMO,*,PRIMERO,<srai>CUAL ES MI NOMBRE</srai>,primero.aiml
+0,ES <SET>COLOR</SET> UN COLOR,*,PRIMERO,Si#Comma <star/> es un color,primero.aiml
+0,ES * UN COLOR,*,PRIMERO,No#Comma <star/> no es un color,primero.aiml
+0,CUAL ES LA CAPITAL DE <SET>PAIS</SET>,*,PRIMERO,La capital de <star/> es <map name="capital"><star/></map>,primero.aiml
+0,CUAL ES LA CAPITAL DE *,*,PRIMERO,No se cual es la capital de <star/>,primero.aiml
+0,^ CAFE ^,*,PRIMERO,te gusta el cafe,primero.aiml
+0,SI,TE GUSTA EL CAFE,PRIMERO,Lo prefieres solo o con leche?,primero.aiml
