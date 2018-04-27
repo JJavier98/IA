@@ -54,8 +54,9 @@ class ComportamientoJugador : public Comportamiento {
     int ultPosF, ultPosC;
 
 
-    bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan);
+    bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan, Sensores sensores);
     void PintaPlan(list<Action> plan);
+    int veoK(Sensores sensores);
 };
 
 #endif

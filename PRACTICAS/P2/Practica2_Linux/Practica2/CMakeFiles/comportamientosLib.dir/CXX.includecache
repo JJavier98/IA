@@ -31,6 +31,14 @@ iostream
 -
 cmath
 -
+vector
+-
+queue
+-
+utility
+-
+stack
+-
 
 /home/jjavier98/GII/2º/2º Semestre/IA/PRACTICAS/P2/Practica2_Linux/Practica2/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
