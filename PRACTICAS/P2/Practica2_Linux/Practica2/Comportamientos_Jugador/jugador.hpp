@@ -22,6 +22,7 @@ class ComportamientoJugador : public Comportamiento {
       destino.orientacion = -1;
       ultimaAccion = actIDLE;
       hayPlan = false;
+      seDondeEstoy = false;
     }
     ComportamientoJugador(std::vector< std::vector< unsigned char> > mapaR) : Comportamiento(mapaR) {
       // Inicializar Variables de Estado
@@ -32,6 +33,7 @@ class ComportamientoJugador : public Comportamiento {
       destino.orientacion = -1;
       ultimaAccion = actIDLE;
       hayPlan = false;
+      seDondeEstoy = false;
     }
     ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport){}
     ~ComportamientoJugador(){}
@@ -45,6 +47,11 @@ class ComportamientoJugador : public Comportamiento {
   private:
     // Declarar Variables de Estado
     int fil, col, brujula;
+    bool seDondeEstoy;
+    bool conozcoElCamino = false;
+    int girosDcha = 0;
+    int girosIzda = 0;
+    int repeticionesTotales = 0;
     estado destino;
     list<Action> plan;
 
@@ -57,6 +64,7 @@ class ComportamientoJugador : public Comportamiento {
     bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan, Sensores sensores);
     void PintaPlan(list<Action> plan);
     int veoK(Sensores sensores);
+    void pintarMapa(Sensores sensores);
 };
 
 #endif

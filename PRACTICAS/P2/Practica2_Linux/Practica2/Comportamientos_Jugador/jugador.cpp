@@ -8,6 +8,8 @@
 #include <queue>
 #include <utility>
 #include <stack>
+#include <cstdlib>
+#include <cassert>
 
 void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	auto it = plan.begin();
@@ -44,18 +46,100 @@ int ComportamientoJugador::veoK(Sensores sensores)
 	return --i;
 }
 
+void ComportamientoJugador::pintarMapa(Sensores sensores)
+{
+	assert(fil != -1);
+
+	switch(brujula)
+	{
+		case 0: 
+			mapaResultado[fil][col] = sensores.terreno[0];
+			mapaResultado[fil-1][col-1] = sensores.terreno[1];
+			mapaResultado[fil-1][col] = sensores.terreno[2];
+			mapaResultado[fil-1][col+1] = sensores.terreno[3];
+			mapaResultado[fil-2][col-2] = sensores.terreno[4];
+			mapaResultado[fil-2][col-1] = sensores.terreno[5];
+			mapaResultado[fil-2][col] = sensores.terreno[6];
+			mapaResultado[fil-2][col+1] = sensores.terreno[7];
+			mapaResultado[fil-2][col+2] = sensores.terreno[8];
+			mapaResultado[fil-3][col-3] = sensores.terreno[9];
+			mapaResultado[fil-3][col-2] = sensores.terreno[10];
+			mapaResultado[fil-3][col-1] = sensores.terreno[11];
+			mapaResultado[fil-3][col] = sensores.terreno[12];
+			mapaResultado[fil-3][col+1] = sensores.terreno[13];
+			mapaResultado[fil-3][col+2] = sensores.terreno[14];
+			mapaResultado[fil-3][col+3] = sensores.terreno[15];
+		break;
+		case 1: 
+			mapaResultado[fil][col] = sensores.terreno[0];
+			mapaResultado[fil-1][col+1] = sensores.terreno[1];
+			mapaResultado[fil][col+1] = sensores.terreno[2];
+			mapaResultado[fil+1][col+1] = sensores.terreno[3];
+			mapaResultado[fil-2][col+2] = sensores.terreno[4];
+			mapaResultado[fil-1][col+2] = sensores.terreno[5];
+			mapaResultado[fil][col+2] = sensores.terreno[6];
+			mapaResultado[fil+1][col+2] = sensores.terreno[7];
+			mapaResultado[fil+2][col+2] = sensores.terreno[8];
+			mapaResultado[fil-3][col+3] = sensores.terreno[9];
+			mapaResultado[fil-2][col+3] = sensores.terreno[10];
+			mapaResultado[fil-1][col+3] = sensores.terreno[11];
+			mapaResultado[fil][col+3] = sensores.terreno[12];
+			mapaResultado[fil+1][col+3] = sensores.terreno[13];
+			mapaResultado[fil+2][col+3] = sensores.terreno[14];
+			mapaResultado[fil+3][col+3] = sensores.terreno[15];
+		break;
+		case 2:
+			mapaResultado[fil][col] = sensores.terreno[0];
+			mapaResultado[fil+1][col+1] = sensores.terreno[1];
+			mapaResultado[fil+1][col] = sensores.terreno[2];
+			mapaResultado[fil+1][col-1] = sensores.terreno[3];
+			mapaResultado[fil+2][col+2] = sensores.terreno[4];
+			mapaResultado[fil+2][col+1] = sensores.terreno[5];
+			mapaResultado[fil+2][col] = sensores.terreno[6];
+			mapaResultado[fil+2][col-1] = sensores.terreno[7];
+			mapaResultado[fil+2][col-2] = sensores.terreno[8];
+			mapaResultado[fil+3][col+3] = sensores.terreno[9];
+			mapaResultado[fil+3][col+2] = sensores.terreno[10];
+			mapaResultado[fil+3][col+1] = sensores.terreno[11];
+			mapaResultado[fil+3][col] = sensores.terreno[12];
+			mapaResultado[fil+3][col-1] = sensores.terreno[13];
+			mapaResultado[fil+3][col-2] = sensores.terreno[14];
+			mapaResultado[fil+3][col-3] = sensores.terreno[15];
+		break;
+		case 3:
+			mapaResultado[fil][col] = sensores.terreno[0];
+			mapaResultado[fil+1][col-1] = sensores.terreno[1];
+			mapaResultado[fil][col-1] = sensores.terreno[2];
+			mapaResultado[fil-1][col-1] = sensores.terreno[3];
+			mapaResultado[fil+2][col-2] = sensores.terreno[4];
+			mapaResultado[fil+1][col-2] = sensores.terreno[5];
+			mapaResultado[fil][col-2] = sensores.terreno[6];
+			mapaResultado[fil-1][col-2] = sensores.terreno[7];
+			mapaResultado[fil-2][col-2] = sensores.terreno[8];
+			mapaResultado[fil+3][col-3] = sensores.terreno[9];
+			mapaResultado[fil+2][col-3] = sensores.terreno[10];
+			mapaResultado[fil+1][col-3] = sensores.terreno[11];
+			mapaResultado[fil][col-3] = sensores.terreno[12];
+			mapaResultado[fil-1][col-3] = sensores.terreno[13];
+			mapaResultado[fil-2][col-3] = sensores.terreno[14];
+			mapaResultado[fil-3][col-3] = sensores.terreno[15];
+		break;
+	}
+}
+
 bool ComportamientoJugador::pathFinding(const estado &origen, const estado &destino, list<Action> &plan, Sensores sensores) {
 	//Borro la lista
 
 	plan.clear();
 	int posK, filaK, columnaK;
 	estado objetivo;
-	bool mini = false;
+	bool mini = false,
+		 hayObjetivo = false;
 	vector<vector<unsigned char> > miniMatriz;
 
 	int dx[4] = {-1, 0, 1, 0};
 	int dy[4] = {0, 1, 0, -1};
-	if(mapaResultado[origen.fila][origen.columna] == '?')
+	if(!seDondeEstoy)
 	{
 		mini = true;
 		posK = veoK(sensores);
@@ -68,137 +152,135 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 				miniMatriz[i][j] = 'P';
 		}
 
-			miniMatriz[0][0] = sensores.terreno[15];
-			miniMatriz[0][1] = sensores.terreno[14];
-			miniMatriz[0][2] = sensores.terreno[13];
+			miniMatriz[0][0] = sensores.terreno[9];
+			miniMatriz[0][1] = sensores.terreno[10];
+			miniMatriz[0][2] = sensores.terreno[11];
 			miniMatriz[0][3] = sensores.terreno[12];
-			miniMatriz[0][4] = sensores.terreno[11];
-			miniMatriz[0][5] = sensores.terreno[10];
-			miniMatriz[0][6] = sensores.terreno[9];
-			miniMatriz[1][1] = sensores.terreno[8];
-			miniMatriz[1][2] = sensores.terreno[7];
+			miniMatriz[0][4] = sensores.terreno[13];
+			miniMatriz[0][5] = sensores.terreno[14];
+			miniMatriz[0][6] = sensores.terreno[15];
+			miniMatriz[1][1] = sensores.terreno[4];
+			miniMatriz[1][2] = sensores.terreno[5];
 			miniMatriz[1][3] = sensores.terreno[6];
-			miniMatriz[1][4] = sensores.terreno[5];
-			miniMatriz[1][5] = sensores.terreno[4];
-			miniMatriz[2][2] = sensores.terreno[3];
+			miniMatriz[1][4] = sensores.terreno[7];
+			miniMatriz[1][5] = sensores.terreno[8];
+			miniMatriz[2][2] = sensores.terreno[1];
 			miniMatriz[2][3] = sensores.terreno[2];
-			miniMatriz[2][4] = sensores.terreno[1];
+			miniMatriz[2][4] = sensores.terreno[3];
 			miniMatriz[3][3] = sensores.terreno[0];
 
 		if(posK == -1)
 		{
-			objetivo.fila = 0;
-			objetivo.columna = 0;
-			objetivo.orientacion = 0;
+
+			if(girosIzda < 2)
+			{
+				
+				girosIzda++;
+				repeticionesTotales++;
+				if(girosIzda == 2)
+					girosDcha = 0;
+
+				if(sensores.terreno[4] != 'B' && sensores.terreno[4] != 'A' &&
+				 sensores.terreno[4] != 'P' && sensores.terreno[4] != 'M' && sensores.terreno[4] != 'D')
+				{
+					objetivo.fila = 1;
+					objetivo.columna = 1;
+					objetivo.orientacion = 0;
+
+					hayObjetivo = true;
+
+
+				}
+			}
+			else if(girosDcha < 2)
+			{
+				girosDcha++;
+				if(repeticionesTotales == 20)
+				{
+					girosDcha--;
+					repeticionesTotales = 0;
+				}
+				if(girosDcha == 2)
+					girosIzda = 0;
+
+				if(sensores.terreno[8] != 'B' && sensores.terreno[8] != 'A' &&
+				 sensores.terreno[8] != 'P' && sensores.terreno[8] != 'M' && sensores.terreno[8] != 'D')
+				{
+					objetivo.fila = 1;
+					objetivo.columna = 5;
+					objetivo.orientacion = 0;
+
+					hayObjetivo = true;
+
+
+				}
+			}
 		}
 		else
 		{
 			switch(posK)
 			{
-				case 0:
-					filaK = 3;
-					columnaK =3;
-				break;
+				case 0:	filaK = 3; columnaK =3;	break;
 
-				case 1:
-					filaK = 2;
-					columnaK =4;
-				break;
+				case 1:	filaK = 2; columnaK =2; break;
 
-				case 2:
-					filaK = 2;
-					columnaK =3;
-				break;
+				case 2:	filaK = 2; columnaK =3;	break;
 
-				case 3:
-					filaK = 2;
-					columnaK =2;
-				break;
+				case 3:	filaK = 2; columnaK =4; break;
 
-				case 4:
-					filaK = 1;
-					columnaK =5;
-				break;
+				case 4:	filaK = 1; columnaK =1;	break;
 
-				case 5:
-					filaK = 1;
-					columnaK =4;
-				break;
+				case 5:	filaK = 1; columnaK =2; break;
 
-				case 6:
-					filaK = 1;
-					columnaK =3;
-				break;
+				case 6:	filaK = 1; columnaK =3; break;
 
-				case 7:
-					filaK = 1;
-					columnaK =2;
-				break;
+				case 7:	filaK = 1; columnaK =4; break;
 
-				case 8:
-					filaK = 1;
-					columnaK =1;
-				break;
+				case 8:	filaK = 1; columnaK =5; break;
 
-				case 9:
-					filaK = 0;
-					columnaK =6;
-				break;
+				case 9:	filaK = 0; columnaK =0; break;
 
-				case 10:
-					filaK = 0;
-					columnaK =5;
-				break;
+				case 10: filaK = 0;	columnaK =1; break;
 
-				case 11:
-					filaK = 0;
-					columnaK =4;
-				break;
+				case 11: filaK = 0;	columnaK =2; break;
 
-				case 12:
-					filaK = 0;
-					columnaK =3;
-				break;
+				case 12: filaK = 0;	columnaK =3; break;
 
-				case 13:
-					filaK = 0;
-					columnaK =2;
-				break;
+				case 13: filaK = 0; columnaK =4; break;
 
-				case 14:
-					filaK = 0;
-					columnaK =1;
-				break;
+				case 14: filaK = 0;	columnaK =5; break;
 
-				case 15:
-					filaK = 0;
-					columnaK =0;
-				break;
+				case 15: filaK = 0; columnaK =6; break;
 			}
 			objetivo.fila = filaK;
 			objetivo.columna = columnaK;
 			objetivo.orientacion = 0;
+
+			hayObjetivo = true;
 		}
-	}else
+	}
+	else
 	{
 		objetivo.fila = destino.fila;
 		objetivo.columna = destino.columna;
 		objetivo.orientacion = destino.orientacion;
+
+		hayObjetivo = true;
+		mini = false;
 	}
-				
+		
 
 ///////////////////////////////////////////////////////////////////NIVEL 2////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	bool encontrado = false;
-
-
 
 	vector <vector<bool> > visitado;		// casillas visitadas
 	vector<vector<estado> > previo;			// casilla anterior por la que se ha pasado
 	vector<vector<unsigned char> > mapaFinal;
 	estado inicial;				// casilla de origen y orientación
 
-	if(mapaResultado[origen.fila][origen.columna] == '?')
+
+	if(mini)
 	{
 		mapaFinal.resize(miniMatriz.size());
 
@@ -210,6 +292,8 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 		inicial.fila = 3;
 		inicial.columna = 3;
 		inicial.orientacion = 0;
+
+
 	}
 	else
 	{
@@ -220,7 +304,10 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 			mapaFinal[i] = mapaResultado[i];
 		}
 		inicial = origen;
+
+
 	}
+
 
 	visitado.resize(mapaFinal.size());
 	previo.resize(mapaFinal.size());
@@ -246,9 +333,9 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	Q.push(inicial);
 	visitado[inicial.fila][inicial.columna] = true;
 
-	cout << "hola" << endl;
+	
 
-	while( !Q.empty())								//Mientras cola no este vacia
+	while( !Q.empty() and hayObjetivo)								//Mientras cola no este vacia
 	{
 		estado actual = Q.front();         			//Obtengo de la cola el estado actual, en un comienzo será el inicial
 		Q.pop();                           			//Saco el elemento de la cola
@@ -260,47 +347,51 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 			{
 				nx = dx[i] + actual.fila;      		//nx y ny tendran la coordenada adyacente
 				ny = dy[i] + actual.columna;
-			}
 
-			if(mapaFinal[nx][ny] != 'B' && mapaFinal[nx][ny] != 'A' &&
-			 mapaFinal[nx][ny] != 'P' && mapaFinal[nx][ny] != 'M' && mapaFinal[nx][ny] != 'D' && !visitado[nx][ny])
-			{
-				int ori;
 
-				if (nx < actual.fila)
-					ori = 0;
-				else if(nx > actual.fila)
-					ori = 2;
-				else if(ny < actual.columna)
-					ori = 3;
-				else if(ny > actual.columna)
-					ori = 1;
+			
 
-				estado adyacente;
-				adyacente.fila = nx;
-				adyacente.columna = ny;
-				adyacente.orientacion = ori;  			//Creamos estado adyacente aumento en 1 la distancia recorrida
-				if(mini)
-					ori = (ori+brujula)%4;
-				Q.push(adyacente);                     //Agregamos adyacente a la cola
-				visitado[nx][ny] = true;
-
-				if( (adyacente.fila == objetivo.fila) && (adyacente.columna == objetivo.columna))			//Si se llego al objetivo (punto final)
+				if(mapaFinal[nx][ny] != 'B' && mapaFinal[nx][ny] != 'A' &&
+				 mapaFinal[nx][ny] != 'P' && mapaFinal[nx][ny] != 'M' && mapaFinal[nx][ny] != 'D' && !visitado[nx][ny])
 				{
-					encontrado = true;
+
+					int ori;
+
+					if (nx < actual.fila)
+						ori = 0;
+					else if(nx > actual.fila)
+						ori = 2;
+					else if(ny < actual.columna)
+						ori = 3;
+					else if(ny > actual.columna)
+						ori = 1;
+
+					estado adyacente;
+					adyacente.fila = nx;
+					adyacente.columna = ny;
+					adyacente.orientacion = ori;  			//Creamos estado adyacente aumento en 1 la distancia recorrida
+					Q.push(adyacente);                     //Agregamos adyacente a la cola
+					visitado[nx][ny] = true;
+
+
+					if( (adyacente.fila == objetivo.fila) && (adyacente.columna == objetivo.columna))			//Si se llego al objetivo (punto final)
+					{
+						encontrado = true;
+					}
+					previo[nx][ny] = actual;
 				}
-				previo[nx][ny] = actual;
 			}
 		}
-	}	
+	}
 
 	if(encontrado)
 	{
+
 		int i = objetivo.fila;
 		int j = objetivo.columna;
 		stack<estado> aux;
 		estado nuevo, dest;
-
+		
 		dest.fila = objetivo.fila;
 		dest.columna = objetivo.columna;
 		if(previo[i][j].fila < objetivo.fila)
@@ -312,33 +403,24 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 		else if(previo[i][j].columna < objetivo.columna)
 			dest.orientacion = 1;
 
-		if(mini)
-			dest.orientacion = (dest.orientacion+brujula)%4;
-
-
+		
 		aux.push(dest);
 
-		while(i!=origen.fila or j!=origen.columna)
+		while(i!=inicial.fila or j!=inicial.columna)
 		{
 			estado pre = previo[i][j];
 			aux.push(pre);
 			i=pre.fila;
 			j=pre.columna;
 		}
-/*
-		while(!aux.empty())
-		{
-			cout << aux.top().fila << "," << aux.top().columna << "," << aux.top().orientacion << endl;
-			aux.pop();
-		}
-*/
+		
 		aux.pop();
-		//cout << nuevo.fila << "," << nuevo.columna << endl;
-		//cout << antiguo.fila << "," << antiguo.columna << endl << endl;
 		while(!aux.empty())
 		{
 			nuevo = aux.top();
 			
+			//if(mini)
+			//	inicial.orientacion =brujula;
 			switch(nuevo.orientacion)
 			{
 				case 0:
@@ -399,35 +481,49 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 					}
 				break;
 			}
+			
 			plan.push_back(actFORWARD);
 			inicial = nuevo;
 			aux.pop();
 		}
-
+		
 		// Descomentar para ver el plan en el mapa
-		VisualizaPlan(origen, plan);
+		if(!mini)
+			VisualizaPlan(origen, plan);
+		
 
-	}else if(mini)
+	}
+	else if(mini)
 	{
+		
 		if(sensores.terreno[2] != 'B' && sensores.terreno[2] != 'A' &&
 			sensores.terreno[2] != 'P' && sensores.terreno[2] != 'M' && sensores.terreno[2] != 'D')
 		{
 			plan.push_back(actFORWARD);
+
 		}
 		else
 		{
-			plan.push_back(actTURN_R);
+			srand( time( NULL ) );
+			if(rand() % 2 == 1)
+				plan.push_back(actTURN_R);
+			else
+				plan.push_back(actTURN_L);
 		}
 	}
 
+	
 	return true;
 }
 
 Action ComportamientoJugador::think(Sensores sensores) {
-  if (sensores.mensajeF != -1){
+  	if (sensores.mensajeF != -1){
 		fil = sensores.mensajeF;
 		col = sensores.mensajeC;
+		seDondeEstoy = true;
 	}
+	if(seDondeEstoy)
+		pintarMapa(sensores);
 
 	cout << "Destino fil: " << sensores.destinoF << "  col: " << sensores.destinoC << endl;
 
@@ -451,7 +547,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		destino.fila = sensores.destinoF;
 		destino.columna = sensores.destinoC;
 
-    hayPlan = pathFinding(origen,destino,plan, sensores);
+    	hayPlan = pathFinding(origen,destino,plan, sensores);
 
 		ultPosF = sensores.destinoF;
 		ultPosC = sensores.destinoC;
@@ -470,22 +566,33 @@ Action ComportamientoJugador::think(Sensores sensores) {
 			plan.erase(plan.begin());
 	}
 	else {
+		hayPlan = false;
 		sigAccion = actIDLE;
 	}
 
-	ultimaAccion = sigAccion;
-	switch (sigAccion){
-		case actTURN_R: brujula = (brujula+1)%4; break;
-		case actTURN_L: brujula = (brujula+3)%4; break;
-		case actFORWARD:
-			switch (brujula){
-				case 0: fil--; break;
-				case 1: col++; break;
-				case 2: fil++; break;
-				case 3: col--; break;
-			}
-			cout << "fil: " << fil << "  col: " << col << " Or: " << brujula << endl;
+	if((sensores.terreno[2] == 'B' or sensores.terreno[2] == 'A' or
+		sensores.terreno[2] == 'P' or sensores.terreno[2] == 'M' or sensores.terreno[2] == 'D') and sigAccion == actFORWARD)
+	{
+		sigAccion = actIDLE;
+		hayPlan = false;
 	}
+	else
+	{
+		ultimaAccion = sigAccion;
+		switch (sigAccion){
+			case actTURN_R: brujula = (brujula+1)%4; break;
+			case actTURN_L: brujula = (brujula+3)%4; break;
+			case actFORWARD:
+				switch (brujula){
+					case 0: fil--; break;
+					case 1: col++; break;
+					case 2: fil++; break;
+					case 3: col--; break;
+				}
+				cout << "fil: " << fil << "  col: " << col << " Or: " << brujula << endl;
+		}
+	}
+
 	return sigAccion;
 }
 
