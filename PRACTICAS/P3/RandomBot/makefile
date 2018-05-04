@@ -1,6 +1,6 @@
 
 all:
-	g++ -oRandomBot *.cpp -I./ -lm -std=c++11
+	g++ -oRandomBot_exe *.cpp -I./ -lm -std=c++11
 
 
 clean:

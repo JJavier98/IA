@@ -1,35 +1,35 @@
 /*
- * AlumnoBot.cpp
+ * HelheimBot.cpp
  *
  *  Created on: 15 ene. 2018
  *      Author: manupc
  */
 
-#include "AlumnoBot.h"
+#include "HelheimBot.h"
 
 #include <string>
 #include <cstdlib>
 #include <iostream>
 using namespace std;
 
-AlumnoBot::AlumnoBot() {
+HelheimBot::HelheimBot() {
 	// Inicializar las variables necesarias para ejecutar la partida
 
 }
 
-AlumnoBot::~AlumnoBot() {
+HelheimBot::~HelheimBot() {
 	// Liberar los recursos reservados (memoria, ficheros, etc.)
 }
 
-void AlumnoBot::initialize() {
+void HelheimBot::initialize() {
 	// Inicializar el bot antes de jugar una partida
 }
 
-string AlumnoBot::getName() {
-	return "AlumnoBot"; // Sustituir por el nombre del bot
+string HelheimBot::getName() {
+	return "HelheimBot"; // Sustituir por el nombre del bot
 }
 
-Move AlumnoBot::nextMove(const vector<Move> &adversary, const GameState &state) {
+Move HelheimBot::nextMove(const vector<Move> &adversary, const GameState &state) {
 
 	Move movimiento= M_NONE;
 
@@ -42,7 +42,7 @@ Move AlumnoBot::nextMove(const vector<Move> &adversary, const GameState &state) 
 
 	// OJO: Recordatorio. El nombre del bot y de la clase deben coincidir.
 	// En caso contrario, el bot no podrá participar en la competición.
-	// Se deberá sustituir el nombre AlumnoBot como nombre de la clase por otro
+	// Se deberá sustituir el nombre HelheimBot como nombre de la clase por otro
 	// seleccionado por el alumno. Se deberá actualizar también el nombre
 	// devuelto por el método getName() acordemente.
 

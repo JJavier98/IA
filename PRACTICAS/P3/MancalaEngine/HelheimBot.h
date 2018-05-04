@@ -1,5 +1,5 @@
 /*
- * AlumnoBot.h
+ * HelheimBot.h
  *
  *  Created on: 15 ene. 2018
  *      Author: manupc
@@ -10,10 +10,10 @@
 #ifndef MANUPCBOT_H_
 #define MANUPCBOT_H_
 
-class AlumnoBot:Bot {
+class HelheimBot:Bot {
 public:
-	AlumnoBot();
-	~AlumnoBot();
+	HelheimBot();
+	~HelheimBot();
 
 
 	void initialize();
