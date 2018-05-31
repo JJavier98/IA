@@ -21,16 +21,13 @@ public:
 	Move nextMove(const vector<Move> &adversary, const GameState &state);
 
 private:
-	const int profundidad_max = 20;
+	const int profundidad_max = 8;
 	Player turno;
 	Player oponente;
 
-	int valorMIN(const GameState &state, const GameState &simulacion, int & profundidad, int & alfa, int & beta);
-	int valorMAX(const GameState &state, const GameState &simulacion, int & profundidad, int & alfa, int & beta);
+	int valorMIN_MAX(const GameState &state, const GameState &simulacion, int profundidad, int alfa, int beta);
 	Move MINI_MAX(const GameState &state);
-	bool ganoPartida(const GameState &state, bool soyYo);
-	bool pierdoPartida(const GameState &state, bool soyYo);
-	int calcularUtilidad(const GameState &state, const GameState &simulacion, bool soyYo);
+	int calcularUtilidad(const GameState &simulacion);
 };
 
 #endif /* MANUPCBOT_H_ */
