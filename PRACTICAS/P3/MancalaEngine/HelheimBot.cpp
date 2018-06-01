@@ -155,8 +155,6 @@ Move HelheimBot::nextMove(const vector<Move> &adversary, const GameState &state)
 	turno= this->getPlayer();
 	oponente = turno == J1? J2 : J1;
 
-	long timeout= this->getTimeOut();
-
 	Move movimiento= MINI_MAX(state);
 
 	return movimiento;

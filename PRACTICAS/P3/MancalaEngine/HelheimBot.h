@@ -21,7 +21,7 @@ public:
 	Move nextMove(const vector<Move> &adversary, const GameState &state);
 
 private:
-	const int profundidad_max = 8;
+	const int profundidad_max = 14;
 	Player turno;
 	Player oponente;
 
@@ -30,4 +30,4 @@ private:
 	int calcularUtilidad(const GameState &simulacion);
 };
 
-#endif /* MANUPCBOT_H_ */
+#endif
